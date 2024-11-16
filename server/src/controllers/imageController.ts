@@ -11,8 +11,8 @@ export const analyzeImage = (req: Request, res: Response) => {
     // to get the carbon score of that cloth and return it.
 
     const mockData = [
-        { item: "T-shirt", carbonScore: 5 },
-        { item: "Jeans", carbonScore: 10 },
+        { name: "T-shirt", carbonScore: 5 },
+        { name: "Jeans", carbonScore: 10 },
     ];
     
     res.json({ identifiedItems: mockData }) ;

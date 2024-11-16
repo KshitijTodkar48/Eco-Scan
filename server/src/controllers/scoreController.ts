@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 
 export const calculateScore = (req: Request, res: Response) => {
-    const { items } = req.body; // items = [{ item: "T-Shirt", carbonScore: 20}, {...}]
+    const { items } = req.body; // items = [{ name: "T-Shirt", carbonScore: 20}, {...}]
 
     if (!Array.isArray(items)) {
         return res.status(400).json({ error: "Invalid items data" });
