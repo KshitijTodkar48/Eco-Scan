@@ -2,10 +2,9 @@ import { useState, useRef } from 'react';
 
 interface ImageUploaderProps {
   onImageSelect: (image: File | Blob) => void;
-};
+}
 
 export const ImageUploader: React.FC<ImageUploaderProps> = ({ onImageSelect }) => {
-  const [preview, setPreview] = useState<string | null>(null);
   const [isCameraActive, setIsCameraActive] = useState(false);
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
@@ -13,7 +12,6 @@ export const ImageUploader: React.FC<ImageUploaderProps> = ({ onImageSelect }) =
     const file = event.target.files?.[0];
     if (file) {
       onImageSelect(file);
-      setPreview(URL.createObjectURL(file));
     }
   };
 
@@ -48,7 +46,6 @@ export const ImageUploader: React.FC<ImageUploaderProps> = ({ onImageSelect }) =
         canvas.toBlob((blob) => {
           if (blob) {
             onImageSelect(blob);
-            setPreview(URL.createObjectURL(blob));
           }
         });
 
@@ -69,19 +66,9 @@ export const ImageUploader: React.FC<ImageUploaderProps> = ({ onImageSelect }) =
   };
 
   return (
-    <div className="flex flex-col items-center gap-4 p-4 bg-white shadow-md rounded-lg max-w-md mx-auto">
+    <div className="flex flex-col items-center gap-4 p-4 bg-white border shadow-md rounded-lg max-w-md mx-auto">
       <h2 className="text-xl font-semibold text-green-700">Upload or Capture an Image</h2>
       <div className="flex flex-col gap-4 w-full">
-        {/* Image Preview */}
-        {preview && (
-          <div className="w-full flex justify-center">
-            <img
-              src={preview}
-              alt="Selected"
-              className="max-w-full h-auto border border-gray-300 rounded-lg"
-            />
-          </div>
-        )}
         {!isCameraActive && (
           <>
             {/* Upload Button */}
