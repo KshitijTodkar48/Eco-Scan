@@ -4,7 +4,7 @@
 EcoScan is a web application designed to help users understand the environmental impact of their clothing. By uploading or capturing images of clothing items, users can see estimated carbon scores, earn eco-reward points, and redeem sustainability-focused offers. This project is a full-stack solution aimed at promoting sustainable practices.
 
 ## 🔧 Tech Stack
-- **Frontend**: React, TailwindCSS, shadcn/ui
+- **Frontend**: React.js, TailwindCSS
 - **Backend**: Node.js, Express.js, TypeScript
 - **Image Recognition**: Mock image analysis for development; integration-ready for AI/ML-based APIs.
 
@@ -15,41 +15,39 @@ EcoScan is a web application designed to help users understand the environmental
 1. **Clone the Repository**  
    Clone the repository and navigate into the project directory:
    ```bash
-   git clone https://github.com/your-username/eco-scan.git
-   cd eco-scan
+   git clone https://github.com/KshitijTodkar48/Eco-Scan.git
+   cd Eco-Scan
    ```
 
 2. **Install Dependencies**  
-   Run the following commands depending on your tech stack:
+   Install dependencies for both frontend and backend:
    ```bash
-   npm install         # for frontend dependencies
-   pip install -r requirements.txt   # if using Python for backend dependencies
+    cd frontend
+    npm install
+   ```
+   
+   ```bash
+    cd backend
+    npm install
    ```
 
 3. **Run the Application**
    - **Backend**: Start the backend server:
      ```bash
-     npm start   # or `python app.py` if using Python backend
+      cd backend
+      npm run dev
      ```
    - **Frontend**: Start the frontend application:
      ```bash
-     npm run start   # or `streamlit run app.py` if using Streamlit
+      cd frontend
+      npm run start
      ```
-
-4. **Testing**  
-   Run the tests to verify the setup:
-   ```bash
-   npm test    # for frontend tests
-   pytest      # if using Python backend
-   ```
-
----
 
 ## 🌱 Carbon Score Assumptions
 
 To calculate the environmental impact of each clothing item, we have assigned approximate carbon scores based on item type. These scores are stored in an in-memory dictionary for quick access.
 
-| 👕 Item       | 🌍 Estimated Carbon Score (kg CO₂) |
+| 👕 Item       | 🌍 Estimated Carbon Score (kg CO₂)|
 |---------------|------------------------------------|
 | T-shirt       |   5                                |
 | Jeans         |   10                               |
@@ -59,20 +57,36 @@ To calculate the environmental impact of each clothing item, we have assigned ap
 | Shoes         |   12                               |
 | Scarf         |   4                                |
 | Hat           |   3                                |
-
----
+------------------------------------------------------
 
 ## 🌟 Product & Technical Enhancements
 
 In this section, suggest possible improvements that could make **EcoScan** a more effective and scalable solution.
 
-1. **Scaling**: 🌐 Describe how the backend could be optimized for a large user base, using techniques like caching or database integration.
-2. **Enhanced Eco-Score Model**: 📊 Outline ways to make carbon scoring more accurate by considering factors like materials, brand data, or garment condition.
-3. **User Experience Improvements**: ✨ Suggest UI/UX features that provide more insights or interactive elements for users, like sustainability comparisons.
-4. **API Integrations**: 🔌 Describe possible integrations with external carbon data sources for real-time accuracy.
+1. **🌐Scaling**:
+- Introduce a robust database like MongoDB for storing user-uploaded image data and eco-reward points.
+- Implement caching (e.g., Redis) for frequent queries to optimize performance.
+- Scale horizontally by deploying the backend on a cloud platform like AWS or Google Cloud using load balancers.
+- Utilize a CDN (Content Delivery Network) for serving static assets to reduce load times.
+- Migrate to a microservices architecture to isolate modules like image processing and eco-reward calculations for better fault tolerance.
+- Use containerization (e.g., Docker) and orchestration tools like Kubernetes to ensure smooth scaling and deployment.
+  
+2. **📊 Enhanced Eco-Score Model**:
+ - Include additional parameters like clothing material, manufacturing origin, and user-input brand data.
+ - Use external APIs for real-time carbon impact data.
+   
+3. **✨ User Experience Improvements**:
+ - Add interactive visualizations for carbon impact comparisons (e.g., bar graphs, pie charts).
+ - Allow users to track their sustainability progress over time with personal dashboards.
+ - Introduce gamification elements like badges and milestones for eco-reward achievements.
+ - Create an "Eco Tips" section with actionable advice on reducing carbon footprints.
+ - Implement a dark mode for better accessibility and user comfort.
+ - Allow users to share their eco-savings on social media to inspire others.
 
----
+4. **🔌 API Integrations**: 
+ - Integrate with services like OpenAI’s Vision API or TensorFlow for advanced image recognition.
 
+   
 ## 📲 Deployment
 
 If deployed, include a link here to access the live version of **EcoScan**.
