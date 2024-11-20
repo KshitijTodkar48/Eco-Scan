@@ -32,13 +32,14 @@ EcoScan is a web application designed to help users understand the environmental
    ```
 
 3. **Add environment variables**
-   Create a '.env' file in the client directory.
-   Add the following variable in it.
+    - Create a '.env' file in the client directory.
+    - Add the following variable in it.
+    
    ```bash
       VITE_SERVER_URL = http://localhost:3000
-     ```
+   ```
 
-4. **Run the Application**
+5. **Run the Application**
    - **Backend**: Start the backend server:
      ```bash
       cd backend
@@ -98,7 +99,7 @@ In this section, suggest possible improvements that could make **EcoScan** a mor
 
 If deployed, include a link here to access the live version of **EcoScan**.
 
-- **URL**: [Insert deployment link here if deployed]
+- **URL**: [Deployment Link](https://eco-scan-mch6.onrender.com/)
 
 ---
 
