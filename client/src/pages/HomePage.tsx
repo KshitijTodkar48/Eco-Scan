@@ -4,7 +4,7 @@ function HomePage() {
   const navigate = useNavigate() ;
 
   return (
-    <div className="bg-green-100 h-[96vh] lg:h-[91vh] flex items-center justify-center">
+    <div className="bg-green-100 min-h-[92vh] flex items-center justify-center pb-6">
       <div className="container mx-auto px-6 md:px-12 text-center lg:text-left">
         {/* Headline and Subheading */}
         <div className="text-5xl my-4 font-extrabold text-green-800 sm:text-6xl">

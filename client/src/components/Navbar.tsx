@@ -8,8 +8,8 @@ export const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     return (
-        <div className="w-full border-b border-green-500 bg-green-200 relative z-50">
-            <div className="flex justify-between items-center px-10 py-3">
+        <div className="w-full bg-green-200 relative z-50">
+            <div className="flex justify-between items-center px-5 xl:px-10 py-3">
                 {/* Logo */}
                 <div className="text-2xl md:text-4xl font-bold">Eco-Scan</div>
 

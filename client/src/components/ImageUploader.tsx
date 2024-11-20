@@ -67,7 +67,7 @@ export const ImageUploader: React.FC<ImageUploaderProps> = ({ onImageSelect }) =
 
   return (
     <div className="flex flex-col items-center gap-4 p-4 bg-white border shadow-md rounded-lg max-w-md mx-auto">
-      <h2 className="text-xl font-semibold text-green-700">Upload or Capture an Image</h2>
+      <h2 className="text-md sm:text-xl font-semibold text-green-700">Upload or Capture an Image</h2>
       <div className="flex flex-col gap-4 w-full">
         {!isCameraActive && (
           <>

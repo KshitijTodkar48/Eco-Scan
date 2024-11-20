@@ -11,6 +11,7 @@ interface OfferProps {
 
 function OffersPage() {
     const [offers, setOffers] = useState<OfferProps[]>([]);
+    const [isloading, setIsLoading] = useState<boolean>(true) ;
     const ecoPoints = useRecoilValue(ecoPointsAtom);
 
     useEffect(() => {
@@ -18,6 +19,7 @@ function OffersPage() {
             try {
                 const response = await axios.get(`${import.meta.env.VITE_SERVER_URL}/api/offers/${ecoPoints}`);
                 setOffers(response.data?.offers);
+                setIsLoading(false);
             } catch (error) {
                 console.error("Error fetching offers.");
             }
@@ -25,6 +27,16 @@ function OffersPage() {
 
         fetchOffers();
     }, []);
+
+    if(isloading) {
+        return (
+            <div className="h-[80vh] flex justify-center items-center">
+                <span className="text-2xl md:text-3xl font-semibold text-gray-400">
+                    Loading...
+                </span>
+            </div>
+        );
+    }
 
     if (offers.length === 0) {
         return (

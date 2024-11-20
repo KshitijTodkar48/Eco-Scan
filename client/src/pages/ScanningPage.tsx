@@ -57,7 +57,7 @@ function ScanningPage() {
   }
 
   return (
-    <div className="h-[95vh] lg:h-[100vh] pt-10 bg-green-100">
+    <div className="py-10 min-h-[92vh] bg-green-100">
       <div className="mx-10">
         {phase === 'initial' && <ImageUploader onImageSelect={handleImageSelect} />}
         {phase === 'preview' && (
