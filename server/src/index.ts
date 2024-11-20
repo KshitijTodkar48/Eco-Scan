@@ -5,7 +5,7 @@ import offerRoute from "./routes/offerRoute";
 import scoreRoute from "./routes/scoreRoute";
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 // Middlewares
 app.use(cors());
