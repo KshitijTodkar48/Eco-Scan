@@ -16,7 +16,7 @@ function OffersPage() {
     useEffect(() => {
         const fetchOffers = async () => {
             try {
-                const response = await axios.get(`http://localhost:3000/api/offers/${ecoPoints}`);
+                const response = await axios.get(`${import.meta.env.VITE_SERVER_URL}/api/offers/${ecoPoints}`);
                 setOffers(response.data?.offers);
             } catch (error) {
                 console.error("Error fetching offers.");

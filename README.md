@@ -31,7 +31,14 @@ EcoScan is a web application designed to help users understand the environmental
     npm install
    ```
 
-3. **Run the Application**
+3. **Add environment variables**
+   Create a '.env' file in the client directory.
+   Add the following variable in it.
+   ```bash
+      VITE_SERVER_URL = http://localhost:3000
+     ```
+
+4. **Run the Application**
    - **Backend**: Start the backend server:
      ```bash
       cd backend

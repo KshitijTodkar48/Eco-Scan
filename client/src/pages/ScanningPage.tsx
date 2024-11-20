@@ -22,7 +22,7 @@ function ScanningPage() {
     formData.append('image', image);
 
     try {
-      const response = await axios.post('http://localhost:3000/api/images/analyze', formData, {
+      const response = await axios.post(`${import.meta.env.VITE_SERVER_URL}/api/images/analyze`, formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
 
@@ -46,7 +46,7 @@ function ScanningPage() {
   const handleCalculateEcoReward = async () => {
     if(!results) return ;
     try {
-        const response = await axios.post('http://localhost:3000/api/scores/calculate', results) ;
+        const response = await axios.post(`${import.meta.env.VITE_SERVER_URL}/api/scores/calculate`, results) ;
         const calculatedEcoScore = response.data;
         setEcoScore(calculatedEcoScore)
         setPhase('eco-score');
