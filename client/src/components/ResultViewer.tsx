@@ -9,7 +9,7 @@ interface ResultsViewerProps {
 
 export const ResultsViewer: React.FC<ResultsViewerProps> = ({ results }) => {
   return (
-    <div className="flex flex-col items-center  w-[15rem] p-4 bg-white shadow rounded-lg mx-auto">
+    <div className="flex flex-col items-center  w-[15rem] p-4 bg-white border shadow-md rounded-lg mx-auto">
       <h2 className="text-2xl font-semibold text-green-600 mb-4">Scan Results</h2>
       <ul>
         {results.identifiedItems?.map((item, index) => (
