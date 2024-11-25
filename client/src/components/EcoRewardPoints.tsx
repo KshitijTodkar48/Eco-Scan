@@ -13,7 +13,7 @@ export const EcoRewardPoints: React.FC<EcoRewardProps> = ({ totalCarbonScore, ec
                 Total Carbon Score: <span className="text-gray-600"> {totalCarbonScore} </span>
             </p>
             <p className="text-lg font-semibold text-gray-400">
-                Eco-Reward Points: <span className="text-gray-600"> {ecoRewardPoints} </span>
+                Eco-Reward Points: <span className="text-gray-600"> {ecoRewardPoints || 0} </span>
             </p>
           </li>
       </ul>

@@ -1,5 +1,7 @@
-import express, { Request, Response } from "express";
+import express from "express";
 import cors from "cors";
+import * as dotenv from 'dotenv';
+dotenv.config();
 import imageRoute from "./routes/imageRoute";
 import offerRoute from "./routes/offerRoute";
 import scoreRoute from "./routes/scoreRoute";

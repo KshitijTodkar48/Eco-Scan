@@ -1,30 +1,78 @@
 import { Request, Response } from "express";
-// import { getCarbonScore } from "../models/carbonScoreModel";
+import axios from "axios";
 
-export const analyzeImage = (req: Request, res: Response) => {
-    if(!req.file) {
-        return res.status(400).json({ error: "No file uploaded" }) ;
+const OPENAI_ENDPOINT = process.env.OPENAI_ENDPOINT as string;
+const OPENAI_API_KEY = process.env.OPENAI_API_KEY as string;
+
+// Mock carbon score data.
+const carbonScores: { [key: string]: number } = {
+  "T-shirt": 5,
+  "Pants": 10,
+  "Shorts": 7,
+  "Jacket": 15,
+  "Socks": 2,
+  "Shoes": 12,
+  "Scarf": 4,
+  "Hat": 3,
+};
+
+export const analyzeImage = async (req: Request, res: Response) => {
+  if (!req.file) {
+    return res.status(400).json({ error: "No file uploaded." });
+  }
+
+  try {
+    // Send the image to OpenAI API.
+    const imageBase64 = req.file.buffer.toString("base64");
+    const response = await axios.post(
+      OPENAI_ENDPOINT,
+      {
+        model: "gpt-4o-mini",
+        messages: [
+          {
+            role: "user",
+            content: [
+              { type: "text", text: "Identify all clothing items in this image. Respond in the format: identifiedItems = ['Item1', 'Item2']" },
+              { type: "image_url", image_url: `data:image/jpeg;base64,${imageBase64}` },
+            ],
+          },
+        ],
+      },
+      {
+        headers: {
+          "api-key": OPENAI_API_KEY,
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    // Extract the response content.
+    const apiResponse = response.data.choices[0].message.content;
+
+    // Extract identified items using regex.
+    let identifiedItems = [];
+    const identifiedItemsMatch = apiResponse.match(/identifiedItems\s*=\s*\[(.*?)\]/);
+
+    if (identifiedItemsMatch) {
+      identifiedItems = identifiedItemsMatch[1]
+        .split(",")
+        .map((item:string) => item.trim().replace(/['"\[\]]+/g, ""));
     }
 
-    /* Image Recognition: Here we can use OpenAI’s GPT-4 Vision model or any open source available models.
-       We can recognize the cloth, get its 'name', and use the 'getCarbonScore(name)' function to get the 
-       carbon score of that cloth and return it. */
-    
-   /* Here we are not using any external API, so we are mocking the above behaviour. */
-    const mockData = [
-        { name: "T-shirt", carbonScore: 5 },
-        { name: "Jeans", carbonScore: 10 },
-        { name: "Sweater", carbonScore: 7 },
-        { name: "Jacket", carbonScore: 15 },
-        { name: "Socks", carbonScore: 2 },
-        { name: "Shoes", carbonScore: 12 },
-        { name: "Scarf", carbonScore: 4 },
-        { name: "Hat", carbonScore: 3 },
-    ];
+    // Map the items to include carbon scores.
+    const itemsWithCarbonScores = identifiedItems.map((item:string) => ({
+      name: item,
+      carbonScore: carbonScores[item] || 10, // Default score is 10.
+    }));
 
-    // Logic to randomly picking up 2 entries, and returning them in the response.
-    const shuffledData = [...mockData].sort(() => Math.random() - 0.5); // Shuffle the array.
-    const data = shuffledData.slice(0, 2); // Take the first 2 entries.
+    // Handle the case where no items are identified.
+    if (itemsWithCarbonScores.length === 0) {
+      return res.json({ message: "No clothing items identified.", identifiedItems: [] });
+    }
 
-    res.json({ identifiedItems: data });
-}
+    res.json({ identifiedItems: itemsWithCarbonScores });
+  } catch (error) {
+    console.error("Error analyzing image:", error);
+    res.status(500).json({ error: "Failed to analyze the image" });
+  }
+};
